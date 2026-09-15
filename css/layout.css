@@ -302,6 +302,12 @@ body.menu-aberto {
 
 .hero__conteudo {
   max-width: 46rem;
+  /* .container (base.css) centraliza com margin-inline: auto — sem este
+     override, encolher a largura aqui recentralizava a caixa no meio do
+     hero. margin-inline: 0 mantém a largura mais estreita (frase não
+     "espalha" pela tela toda) sem perder o alinhamento à esquerda, na
+     mesma margem do logo no header. */
+  margin-inline: 0;
 }
 
 .hero__titulo {

@@ -31,13 +31,18 @@
   color: var(--cor-vermelho-fundo);
 }
 
-/* Destaque dentro da linha: inverte as cores só numa palavra (ex.: "Iron
-   Fox"), o mesmo tratamento vermelho-sobre-branco da logo — em vez de
-   texto vermelho em cima do bloco vermelho da linha, que ficaria
-   invisível por serem a mesma cor. */
+/* Destaque dentro da linha: a palavra em --cor-vermelho-acento (vermelho
+   claro, calibrado para fundo escuro — ver base.css) se distingue do
+   branco do resto da linha sem precisar de uma caixa própria. */
 .bloco-marcado__destaque {
-  background: var(--cor-branco);
-  color: var(--cor-vermelho);
+  color: var(--cor-vermelho-acento);
   padding: 0 0.18em;
-  border-radius: 2px;
+}
+
+/* --cor-vermelho-acento só passa no contraste sobre fundo ESCURO (ver
+   base.css) — dentro da variante --claro (fundo branco), o destaque
+   precisa do tom escuro (--cor-vermelho-fundo) que o resto da linha já
+   usa ali, senão o contraste cai pra ~3.26:1. */
+.bloco-marcado--claro .bloco-marcado__destaque {
+  color: var(--cor-vermelho-fundo);
 }
