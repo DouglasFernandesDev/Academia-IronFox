@@ -1,0 +1,28 @@
+/* ==========================================================================
+   Utilitários — revelação por scroll e pequenos helpers.
+   ========================================================================== */
+
+[data-revelar] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 500ms ease, transform 500ms ease;
+}
+
+[data-revelar].revelar--visivel {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Itens dentro de listas/grids reveladas também recebem um leve stagger
+   visual via nth-child, complementando o atraso calculado em revelar.js */
+[data-revelar] > * {
+  transition-delay: inherit;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-revelar] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

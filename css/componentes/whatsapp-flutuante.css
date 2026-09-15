@@ -1,0 +1,32 @@
+/* ==========================================================================
+   Botão de WhatsApp flutuante — aparece após 400px de scroll.
+   ========================================================================== */
+
+.whatsapp-flutuante {
+  position: fixed;
+  right: max(1.25rem, env(safe-area-inset-right));
+  bottom: max(1.25rem, env(safe-area-inset-bottom));
+  z-index: 90;
+  width: 60px;
+  height: 60px;
+  display: grid;
+  place-items: center;
+  background: #25d366;
+  color: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 14px 28px -10px rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  transform: translateY(16px) scale(0.92);
+  pointer-events: none;
+  transition: opacity var(--transicao-padrao), transform var(--transicao-padrao);
+}
+
+.whatsapp-flutuante--visivel {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.whatsapp-flutuante:hover {
+  transform: translateY(-3px) scale(1.04);
+}

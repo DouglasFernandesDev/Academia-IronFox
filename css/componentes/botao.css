@@ -1,0 +1,103 @@
+/* ==========================================================================
+   Botão — usado em CTAs de header, hero, cards de plano e formulário.
+   Alvo de toque mínimo de 44px em todas as variantes.
+   ========================================================================== */
+
+.botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 48px;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--raio-pequeno);
+  font-family: var(--fonte-display);
+  font-weight: 700;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: transform var(--transicao-rapida), background var(--transicao-rapida), box-shadow var(--transicao-rapida), border-color var(--transicao-rapida);
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+.botao--primario {
+  background: var(--cor-vermelho);
+  color: var(--cor-branco);
+  box-shadow: 0 12px 24px -12px rgba(200, 22, 29, 0.7);
+}
+
+.botao--primario:hover {
+  background: var(--cor-vermelho-hover);
+  transform: translateY(-2px);
+}
+
+.botao--secundario {
+  background: var(--cor-branco);
+  color: var(--cor-preto);
+}
+
+.botao--secundario:hover {
+  transform: translateY(-2px);
+}
+
+.botao--fantasma {
+  background: transparent;
+  color: var(--cor-branco);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.botao--fantasma:hover {
+  border-color: var(--cor-branco);
+  transform: translateY(-2px);
+}
+
+.botao--pequeno {
+  min-height: 40px;
+  padding: 0.5rem 1.1rem;
+  font-size: 0.85rem;
+}
+
+.botao--grande {
+  min-height: 54px;
+  padding: 0.9rem 2rem;
+  font-size: 1.05rem;
+}
+
+.botao:disabled,
+.botao--carregando {
+  opacity: 0.75;
+  cursor: progress;
+  transform: none !important;
+}
+
+.botao--carregando {
+  position: relative;
+  color: transparent !important;
+}
+
+.botao--carregando::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: var(--cor-branco);
+  animation: girar 700ms linear infinite;
+}
+
+@keyframes girar {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .botao--carregando::after {
+    animation: none;
+  }
+}

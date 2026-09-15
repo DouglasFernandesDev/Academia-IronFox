@@ -1,0 +1,68 @@
+/* ==========================================================================
+   Formulário de aula experimental — a isca principal do site.
+   Label sempre visível, erro ao lado do campo, feedback de envio.
+   ========================================================================== */
+
+.formulario {
+  display: grid;
+  gap: 1.25rem;
+  background: var(--cor-preto-elevado);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  padding: 2rem;
+}
+
+.formulario__campo {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.formulario__campo label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--cor-texto);
+}
+
+.formulario__campo input,
+.formulario__campo select {
+  min-height: 48px;
+  padding: 0 1rem;
+  background: var(--cor-preto);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-pequeno);
+  transition: border-color var(--transicao-rapida);
+}
+
+.formulario__campo input:focus-visible,
+.formulario__campo select:focus-visible {
+  border-color: var(--cor-vermelho-acento);
+}
+
+.formulario__campo input[aria-invalid='true'],
+.formulario__campo select[aria-invalid='true'] {
+  border-color: var(--cor-erro);
+}
+
+.formulario__erro {
+  min-height: 1.1em;
+  font-size: 0.82rem;
+  color: var(--cor-erro);
+}
+
+.formulario__enviar {
+  margin-top: 0.5rem;
+}
+
+.formulario__status {
+  min-height: 1.2em;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.formulario__status--erro {
+  color: var(--cor-erro);
+}
+
+.formulario__status--sucesso {
+  color: var(--cor-sucesso);
+}

@@ -1,0 +1,522 @@
+/* ==========================================================================
+   Layout — header, hero, convênios, quem-somos, onde-estamos, footer.
+   Mobile-first: base = mobile, media queries min-width sobem em complexidade.
+   ========================================================================== */
+
+/* ---------- Header ---------- */
+.header {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline: 0;
+  z-index: 100;
+  background: transparent;
+  transition: border-color var(--transicao-padrao), box-shadow var(--transicao-padrao);
+  border-bottom: 1px solid transparent;
+}
+
+/* O fundo com blur fica num ::before, nunca como backdrop-filter direto no
+   .header: backdrop-filter/filter no próprio elemento cria um "containing
+   block" para todo descendente position:fixed — inclusive o .header__nav
+   (o painel do menu mobile), que encolheria para o tamanho do header em vez
+   de cobrir a tela. Isolando o filtro num pseudo-elemento, o .header nunca
+   vira containing block e o menu mobile continua fixo à viewport. */
+.header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: rgba(11, 11, 12, 0);
+  transition: background var(--transicao-padrao), backdrop-filter var(--transicao-padrao);
+}
+
+.header--rolado::before {
+  background: rgba(11, 11, 12, 0.92);
+  backdrop-filter: blur(10px);
+}
+
+.header--rolado {
+  border-bottom-color: var(--cor-borda);
+  box-shadow: 0 12px 30px -20px rgba(0, 0, 0, 0.8);
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  height: 72px;
+}
+
+.header__marca {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--fonte-display);
+  font-weight: 800;
+  font-size: 1.15rem;
+  text-transform: uppercase;
+  color: var(--cor-branco);
+}
+
+.header__logo {
+  border-radius: 50%;
+}
+
+.header__marca-sub {
+  display: block;
+  font-family: var(--fonte-corpo);
+  font-weight: 500;
+  font-size: 0.55rem;
+  letter-spacing: 0.18em;
+  color: var(--cor-texto-suave);
+  text-transform: uppercase;
+}
+
+.header__menu-btn {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--raio-pequeno);
+}
+
+.header__menu-icone,
+.header__menu-icone::before,
+.header__menu-icone::after {
+  content: '';
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--cor-branco);
+  border-radius: 2px;
+  transition: transform var(--transicao-dinamica), opacity var(--transicao-rapida), background var(--transicao-rapida);
+}
+
+.header__menu-btn {
+  transition: transform var(--transicao-dinamica);
+}
+
+.header__menu-btn:active {
+  transform: scale(0.88);
+}
+
+.header__menu-icone::before {
+  transform: translateY(-6px);
+}
+
+.header__menu-icone::after {
+  transform: translateY(4px);
+}
+
+[aria-expanded='true'] .header__menu-icone {
+  background: transparent;
+}
+
+[aria-expanded='true'] .header__menu-icone::before {
+  transform: translateY(0) rotate(45deg);
+}
+
+[aria-expanded='true'] .header__menu-icone::after {
+  transform: translateY(-2px) rotate(-45deg);
+}
+
+.header__nav {
+  position: fixed;
+  inset-inline: 0;
+  top: 72px;
+  bottom: 0;
+  background: var(--cor-preto);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem var(--espaco-container);
+  transform: translateX(100%) scale(0.98);
+  opacity: 0;
+  /* visibility troca só depois que o fechamento termina (delay = duração da
+     suave) — sem isso o painel sumiria de golpe no fechamento, cortando a
+     transição de opacidade/transform no meio. Ao abrir, o delay é 0: fica
+     visível já no primeiro frame, e a opacidade cuida da entrada suave. */
+  transition: transform var(--transicao-suave), opacity var(--transicao-suave), visibility 0s linear 550ms;
+  overflow-y: auto;
+  visibility: hidden;
+}
+
+.header__nav--aberto {
+  transform: translateX(0) scale(1);
+  opacity: 1;
+  visibility: visible;
+  transition: transform var(--transicao-suave), opacity var(--transicao-suave), visibility 0s linear 0s;
+}
+
+.header__nav-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  font-family: var(--fonte-display);
+  font-size: 1.6rem;
+  text-transform: uppercase;
+}
+
+/* Stagger: cada link entra com um pequeno atraso crescente, então a abertura
+   do menu lê como uma sequência dinâmica em vez de um bloco chegando de
+   uma vez. Some/desce quando o painel está fechado para não vazar fora dele. */
+.header__nav-lista li,
+.header__cta {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity var(--transicao-suave), transform var(--transicao-suave);
+  transition-delay: 0ms;
+}
+
+.header__nav--aberto .header__nav-lista li,
+.header__nav--aberto .header__cta {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.header__nav--aberto .header__nav-lista li:nth-child(1) { transition-delay: 80ms; }
+.header__nav--aberto .header__nav-lista li:nth-child(2) { transition-delay: 130ms; }
+.header__nav--aberto .header__nav-lista li:nth-child(3) { transition-delay: 180ms; }
+.header__nav--aberto .header__nav-lista li:nth-child(4) { transition-delay: 230ms; }
+.header__nav--aberto .header__nav-lista li:nth-child(5) { transition-delay: 280ms; }
+.header__nav--aberto .header__cta { transition-delay: 330ms; }
+
+.header__nav-lista a {
+  transition: color var(--transicao-rapida);
+}
+
+.header__nav-lista a:hover,
+.header__nav-link--ativo {
+  color: var(--cor-vermelho-acento);
+}
+
+.header__cta {
+  align-self: flex-start;
+}
+
+body.menu-aberto {
+  overflow: hidden;
+}
+
+@media (min-width: 900px) {
+  .header__menu-btn {
+    display: none;
+  }
+
+  .header__nav {
+    position: static;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    background: transparent;
+    transform: none;
+    padding: 0;
+    gap: 2.25rem;
+    overflow: visible;
+    /* O painel off-canvas do mobile começa visibility:hidden por padrão
+       (só liga com a classe --aberto, que o JS do hambúrguer nunca aplica
+       aqui, já que o botão dele está escondido neste breakpoint) — sem
+       este reset, a nav inteira do desktop ficaria invisível mesmo com
+       opacity:1, porque visibility:hidden nunca se revoga sozinho. */
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .header__nav-lista {
+    flex-direction: row;
+    gap: 1.75rem;
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+  }
+
+  /* O stagger de entrada (acima) é só do painel off-canvas do mobile — a
+     partir daqui o header__nav vira a nav normal do desktop, sempre
+     visível, nunca dependente da classe --aberto (que só o JS do menu
+     hambúrguer aplica, e o botão dele fica escondido neste breakpoint). */
+  .header__nav-lista li,
+  .header__cta {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  min-height: 92vh;
+  display: flex;
+  align-items: flex-end;
+  padding-block: 7rem 3.5rem;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.hero__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
+}
+
+.hero__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 700ms ease;
+}
+
+.hero__video--ativo {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__video {
+    display: none;
+  }
+}
+
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(11, 11, 12, 0.55) 0%, rgba(11, 11, 12, 0.75) 55%, var(--cor-preto) 100%),
+    linear-gradient(90deg, rgba(11, 11, 12, 0.7) 0%, rgba(11, 11, 12, 0.25) 60%);
+}
+
+.hero__conteudo {
+  max-width: 46rem;
+}
+
+.hero__titulo {
+  margin-top: 0.5rem;
+}
+
+.hero__texto {
+  margin-top: 1.5rem;
+  font-size: 1.1rem;
+  color: var(--cor-texto-suave);
+  max-width: 42ch;
+}
+
+.hero__ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2.25rem;
+}
+
+.hero__horarios {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.75rem;
+  margin-top: 2.75rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+/* ---------- Horário (item reutilizado no hero e em onde-estamos) ---------- */
+.horario {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.horario__dias {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--cor-texto-suave);
+}
+
+.horario__intervalo {
+  font-family: var(--fonte-display);
+  font-weight: 700;
+  font-size: 1.15rem;
+}
+
+/* ---------- Convênios ---------- */
+.convenios {
+  background: var(--cor-branco);
+  color: var(--cor-preto);
+  padding-block: 1.5rem;
+}
+
+.convenios__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem 1.5rem;
+  text-align: center;
+}
+
+.convenios__texto {
+  font-weight: 600;
+  color: #45454a;
+}
+
+.convenios__lista {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.convenios__item {
+  font-family: var(--fonte-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  background: var(--cor-preto);
+  color: var(--cor-branco);
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+}
+
+/* ---------- Quem somos ---------- */
+.quem-somos__grid {
+  display: grid;
+  gap: 2rem;
+}
+
+.quem-somos__titulo {
+  margin-top: 0.5rem;
+  font-size: clamp(1.6rem, 3.4vw, 2.3rem);
+}
+
+.quem-somos__texto {
+  display: grid;
+  gap: 1.1rem;
+  font-size: 1.05rem;
+  color: var(--cor-texto-suave);
+  max-width: 56ch;
+}
+
+.quem-somos__texto p:first-child {
+  color: var(--cor-texto);
+  font-weight: 600;
+  font-size: 1.15rem;
+}
+
+@media (min-width: 900px) {
+  .quem-somos__grid {
+    grid-template-columns: 0.85fr 1.15fr;
+    align-items: start;
+    gap: 3rem;
+  }
+}
+
+/* ---------- Onde estamos ---------- */
+.onde-estamos__grid {
+  display: grid;
+  gap: 2.5rem;
+}
+
+.onde-estamos__endereco {
+  font-style: normal;
+  margin-top: 1.25rem;
+  font-size: 1.1rem;
+  color: var(--cor-texto-suave);
+  line-height: 1.6;
+}
+
+.onde-estamos__horarios {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin: 1.75rem 0;
+  padding: 1.25rem;
+  background: var(--cor-preto-elevado-2);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+}
+
+.onde-estamos__mapa {
+  border-radius: var(--raio);
+  overflow: hidden;
+  border: 1px solid var(--cor-borda);
+  aspect-ratio: 4 / 3;
+}
+
+.onde-estamos__mapa iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+@media (min-width: 900px) {
+  .onde-estamos__grid {
+    grid-template-columns: 1fr 1.1fr;
+    align-items: center;
+  }
+
+  .onde-estamos__mapa {
+    aspect-ratio: auto;
+    height: 460px;
+  }
+}
+
+/* ---------- Footer ---------- */
+.footer {
+  border-top: 1px solid var(--cor-borda);
+  padding-block: 3rem;
+}
+
+.footer__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+  text-align: center;
+  color: var(--cor-texto-suave);
+}
+
+.footer__marca {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--fonte-display);
+  font-weight: 700;
+  font-size: 1.05rem;
+  text-transform: uppercase;
+  color: var(--cor-branco);
+}
+
+.footer__marca img {
+  border-radius: 50%;
+}
+
+.footer__texto {
+  max-width: 46ch;
+  font-size: 0.9rem;
+}
+
+.footer__copy {
+  font-size: 0.85rem;
+}
+
+/* ---------- Experimental (form) layout ---------- */
+.experimental__grid {
+  display: grid;
+  gap: 2.5rem;
+}
+
+@media (min-width: 900px) {
+  .experimental__grid {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 3.5rem;
+  }
+}

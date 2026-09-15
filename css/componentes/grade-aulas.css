@@ -1,0 +1,179 @@
+/* ==========================================================================
+   Aulas coletivas — cards de modalidade + grade dia×horário.
+   Desktop: tabela real. Mobile: lista filtrada por dia (uma tabela de 5
+   colunas não cabe em 375px sem forçar scroll horizontal do body).
+   ========================================================================== */
+
+.modalidades-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-bottom: 3.5rem;
+}
+
+@media (min-width: 640px) {
+  .modalidades-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1000px) {
+  .modalidades-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.card-modalidade {
+  background: var(--cor-preto-elevado);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  padding: 1.5rem;
+  transition: border-color var(--transicao-padrao), transform var(--transicao-padrao);
+}
+
+.card-modalidade:hover {
+  border-color: rgba(232, 37, 45, 0.45);
+  transform: translateY(-3px);
+}
+
+.card-modalidade__nome {
+  font-size: 1.15rem;
+  color: var(--cor-vermelho-acento);
+}
+
+.card-modalidade__descricao {
+  margin-top: 0.5rem;
+  color: var(--cor-texto-suave);
+  font-size: 0.95rem;
+}
+
+/* ---------- Grade da semana ---------- */
+.grade-aulas__titulo {
+  font-size: 1.3rem;
+}
+
+.grade-aulas__aviso {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--cor-texto-suave);
+  font-style: italic;
+}
+
+.grade-aulas__tabela-wrap {
+  display: none;
+  margin-top: 1.75rem;
+  overflow-x: auto;
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+}
+
+.grade-aulas__tabela {
+  min-width: 620px;
+}
+
+.grade-aulas__tabela th,
+.grade-aulas__tabela td {
+  padding: 0.9rem 1rem;
+  text-align: center;
+  border-bottom: 1px solid var(--cor-borda);
+  font-size: 0.9rem;
+}
+
+.grade-aulas__tabela thead th {
+  background: var(--cor-preto-elevado-2);
+  font-family: var(--fonte-display);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.8rem;
+}
+
+.grade-aulas__tabela tbody th {
+  background: var(--cor-preto-elevado-2);
+  font-family: var(--fonte-display);
+  font-weight: 700;
+}
+
+.grade-aulas__tabela tbody tr:last-child td,
+.grade-aulas__tabela tbody tr:last-child th {
+  border-bottom: none;
+}
+
+.grade-aulas__pill {
+  display: inline-block;
+  background: rgba(200, 22, 29, 0.18);
+  color: #ff9a9e;
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.grade-aulas__vazio {
+  color: #4a4a50;
+}
+
+.grade-aulas__mobile {
+  margin-top: 1.75rem;
+}
+
+.grade-aulas__dias {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.25rem;
+}
+
+.grade-aulas__dia-btn {
+  flex: 0 0 auto;
+  min-height: 44px;
+  padding: 0 1.1rem;
+  border-radius: 999px;
+  background: var(--cor-preto-elevado);
+  border: 1px solid var(--cor-borda);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.grade-aulas__dia-btn[aria-pressed='true'] {
+  background: var(--cor-vermelho);
+  border-color: var(--cor-vermelho);
+  color: var(--cor-branco);
+}
+
+.grade-aulas__lista {
+  margin-top: 1rem;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.grade-aulas__item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: var(--cor-preto-elevado);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-pequeno);
+  padding: 0.9rem 1.1rem;
+}
+
+.grade-aulas__item-horario {
+  font-family: var(--fonte-display);
+  font-weight: 700;
+  color: var(--cor-vermelho-acento);
+  min-width: 3.5ch;
+}
+
+.grade-aulas__item--vazio {
+  color: var(--cor-texto-suave);
+  font-style: italic;
+}
+
+@media (min-width: 780px) {
+  .grade-aulas__tabela-wrap {
+    display: block;
+  }
+
+  .grade-aulas__mobile {
+    display: none;
+  }
+}

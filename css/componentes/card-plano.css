@@ -1,0 +1,195 @@
+/* ==========================================================================
+   Planos — toggle de categoria + cards de preço (estilo "preço gigante"
+   inspirado no cartaz oficial da Iron Fox e nas referências Smart Fit/Bluefit).
+   ========================================================================== */
+
+.planos__toggle {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding: 0.35rem;
+  background: var(--cor-preto-elevado-2);
+  border: 1px solid var(--cor-borda);
+  border-radius: 999px;
+  margin-bottom: 1.25rem;
+}
+
+.planos__tab {
+  padding: 0.65rem 1.35rem;
+  border-radius: 999px;
+  font-family: var(--fonte-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+  color: var(--cor-texto-suave);
+  transition: background var(--transicao-rapida), color var(--transicao-rapida);
+  min-height: 44px;
+}
+
+.planos__tab[aria-selected='true'] {
+  background: var(--cor-vermelho);
+  color: var(--cor-branco);
+}
+
+.planos__descricao {
+  color: var(--cor-texto-suave);
+  margin-bottom: 2.5rem;
+}
+
+.planos__grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr;
+}
+
+.planos__nota {
+  margin-top: 2.5rem;
+  font-size: 0.85rem;
+  color: var(--cor-texto-suave);
+  border-top: 1px solid var(--cor-borda);
+  padding-top: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .planos__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1080px) {
+  .planos__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.card-plano {
+  position: relative;
+  background: linear-gradient(165deg, var(--cor-preto-elevado) 0%, var(--cor-preto) 100%);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  padding: 2rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transicao-padrao), border-color var(--transicao-padrao), box-shadow var(--transicao-padrao);
+}
+
+.card-plano:hover {
+  transform: translateY(-4px);
+  border-color: rgba(232, 37, 45, 0.5);
+  box-shadow: var(--sombra-card);
+}
+
+.card-plano--destaque {
+  background: linear-gradient(165deg, var(--cor-vermelho-fundo) 0%, var(--cor-preto) 78%);
+  border-color: var(--cor-vermelho-acento);
+}
+
+.card-plano__badge {
+  position: absolute;
+  top: -0.85rem;
+  left: 1.75rem;
+  background: var(--cor-vermelho-hover);
+  color: var(--cor-branco);
+  font-family: var(--fonte-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+}
+
+.card-plano__nome {
+  font-size: 1.15rem;
+  margin-top: 0.5rem;
+}
+
+.card-plano__legenda {
+  margin-top: 0.6rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--cor-texto-suave);
+}
+
+.card-plano__preco {
+  font-family: var(--fonte-display);
+  font-weight: 800;
+  font-size: clamp(2.6rem, 6vw, 3.4rem);
+  line-height: 1;
+  margin-top: 0.35rem;
+  color: var(--cor-branco);
+}
+
+.card-plano__moeda {
+  font-size: 0.4em;
+  vertical-align: text-top;
+  margin-right: 0.15rem;
+  font-weight: 700;
+}
+
+.card-plano__centavos {
+  font-size: 0.45em;
+  vertical-align: text-top;
+}
+
+.card-plano__periodo {
+  display: inline-block;
+  font-size: 0.55em;
+  text-transform: lowercase;
+  color: var(--cor-texto-suave);
+  margin-left: 0.15rem;
+}
+
+.card-plano__condicao {
+  margin-top: 0.5rem;
+  color: var(--cor-texto-suave);
+  font-size: 0.95rem;
+}
+
+.card-plano__economia {
+  margin-top: 0.6rem;
+  font-size: 0.82rem;
+  color: var(--cor-sucesso);
+  font-weight: 600;
+}
+
+.card-plano__cta {
+  margin-top: 1.75rem;
+  width: 100%;
+}
+
+/* ---------- Pilha de cards no mobile ----------
+   Abaixo de 640px os cards de plano empilham com position: sticky e um
+   "top" crescente por card: ao rolar, cada plano novo desliza por cima e
+   cobre o anterior (que fica preso logo atrás, com uma tira visível no
+   topo) — o mesmo efeito da seção "O treino é só o começo" da Smart Fit,
+   só que com scroll nativo real, sem JS de scroll-progress: cada card é
+   puro CSS sticky, então teclado, roda do mouse e leitor de tela continuam
+   funcionando exatamente como em qualquer outra rolagem da página.
+   Fica no final do arquivo de propósito: a regra base ".card-plano
+   { position: relative }" lá em cima tem a mesma especificidade, e quem
+   vier depois no código vence o empate — em qualquer ordem futura de
+   edição, esse bloco precisa continuar sendo o último a mexer em
+   .card-plano para a pilha do mobile não voltar a quebrar. */
+@media (max-width: 639px) {
+  .planos__grid {
+    gap: 0;
+    padding-bottom: 3rem;
+  }
+
+  .card-plano {
+    position: sticky;
+    min-height: 62vh;
+    justify-content: center;
+    box-shadow: 0 24px 50px -20px rgba(0, 0, 0, 0.7);
+  }
+
+  .card-plano:nth-child(1) { top: 84px; z-index: 1; }
+  .card-plano:nth-child(2) { top: 98px; z-index: 2; }
+  .card-plano:nth-child(3) { top: 112px; z-index: 3; }
+  .card-plano:nth-child(4) { top: 126px; z-index: 4; }
+  .card-plano:nth-child(5) { top: 140px; z-index: 5; }
+  .card-plano:nth-child(6) { top: 154px; z-index: 6; }
+}

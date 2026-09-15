@@ -1,0 +1,567 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Iron Fox Sport Center — Academia em Iguaba Grande, RJ</title>
+  <meta
+    name="description"
+    content="Academia em Iguaba Grande com musculação, cardio e aulas coletivas (Funcional, Jump, Spinning, Pilates, Dança). Aceita TotalPass e Gympass. Agende sua aula experimental grátis."
+  />
+  <meta name="theme-color" content="#0b0b0c" />
+  <link rel="icon" href="imagens/logo-160.webp" type="image/webp" />
+  <link rel="apple-touch-icon" href="imagens/logo-320.webp" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:site_name" content="Iron Fox Sport Center" />
+  <meta property="og:title" content="Iron Fox Sport Center — Academia em Iguaba Grande, RJ" />
+  <meta
+    property="og:description"
+    content="Musculação, cardio e aulas coletivas em Iguaba Grande. Aceita TotalPass e Gympass. Primeira aula experimental é grátis."
+  />
+  <meta property="og:image" content="imagens/logo.png" />
+  <meta name="twitter:card" content="summary" />
+
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/componentes/bloco-marcado.css" />
+  <link rel="stylesheet" href="css/componentes/botao.css" />
+  <link rel="stylesheet" href="css/componentes/card-plano.css" />
+  <link rel="stylesheet" href="css/componentes/grade-aulas.css" />
+  <link rel="stylesheet" href="css/componentes/galeria.css" />
+  <link rel="stylesheet" href="css/componentes/equipe.css" />
+  <link rel="stylesheet" href="css/componentes/depoimento.css" />
+  <link rel="stylesheet" href="css/componentes/formulario.css" />
+  <link rel="stylesheet" href="css/componentes/whatsapp-flutuante.css" />
+  <link rel="stylesheet" href="css/utilitarios.css" />
+
+  <!-- JSON-LD: dados estruturados para a academia aparecer na busca local do Google.
+       Endereço e horário são reais; telefone e faixa de preço seguem os
+       placeholders de js/data/config.js até a confirmação final. -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ExerciseGym",
+      "name": "Iron Fox Sport Center",
+      "image": "imagens/logo.png",
+      "priceRange": "R$89,90 - R$179,90",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "R. Nossa Sra. de Nazareth, s/n, ao lado do nº 1044",
+        "addressLocality": "Iguaba Grande",
+        "addressRegion": "RJ",
+        "addressCountry": "BR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -22.8395,
+        "longitude": -42.2286
+      },
+      "openingHoursSpecification": [
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "05:00", "closes": "22:00" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "08:00", "closes": "16:00" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "09:00", "closes": "13:00" }
+      ]
+    }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="header">
+    <div class="container header__inner">
+      <a href="#inicio" class="header__marca">
+        <img src="imagens/logo-160.webp" alt="" width="44" height="44" class="header__logo" />
+        <span class="header__marca-texto">Iron Fox<span class="header__marca-sub">Sport Center</span></span>
+      </a>
+
+      <nav class="header__nav" id="nav-principal" aria-label="Navegação principal">
+        <ul class="header__nav-lista">
+          <li><a href="#planos">Planos</a></li>
+          <li><a href="#aulas">Aulas</a></li>
+          <li><a href="#estrutura">Estrutura</a></li>
+          <li><a href="#equipe">Equipe</a></li>
+          <li><a href="#onde-estamos">Onde estamos</a></li>
+        </ul>
+        <a href="#experimental" class="botao botao--primario botao--pequeno header__cta">Aula grátis</a>
+      </nav>
+
+      <button
+        type="button"
+        class="header__menu-btn"
+        aria-expanded="false"
+        aria-controls="nav-principal"
+        aria-label="Abrir menu de navegação"
+      >
+        <span class="header__menu-icone" aria-hidden="true"></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <!-- ===== HERO ===== -->
+    <section class="hero" aria-labelledby="hero-titulo">
+      <div class="hero__media">
+        <!-- A foto real fica sempre como base. O vídeo (banco de imagens,
+             ver imagens/placeholder/README.md) entra por cima só depois de
+             conseguir tocar de verdade — sem isso, nunca aparece um frame
+             preto: se autoplay for bloqueado, prefers-reduced-motion estiver
+             ativo, ou o navegador não suportar, a foto real segue visível. -->
+        <img
+          src="imagens/fachada.jpg"
+          alt="Fachada real da Iron Fox Sport Center, com fachada em madeira e letreiro iluminado"
+          width="1400"
+          height="484"
+          class="hero__img"
+          id="hero-img"
+        />
+        <video class="hero__video" id="hero-video" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1">
+          <source src="imagens/placeholder/hero-treino.mp4" type="video/mp4" />
+        </video>
+        <div class="hero__overlay" aria-hidden="true"></div>
+      </div>
+
+      <div class="container hero__conteudo">
+        <p class="secao__eyebrow">Iguaba Grande · Cidade Nova</p>
+        <h1 id="hero-titulo" class="hero__titulo">
+          <span class="bloco-marcado">
+            <span class="bloco-marcado__linha">Chegamos para mudar</span><br />
+            <span class="bloco-marcado__linha">a sua visão de treino!</span>
+          </span>
+        </h1>
+        <p class="hero__texto">
+          Musculação, cardio e 6 modalidades de aula coletiva num centro de treinamento pensado
+          do iniciante ao atleta de alto desempenho. Aberto todos os dias, a partir das 5h.
+        </p>
+        <div class="hero__ctas">
+          <a href="#experimental" class="botao botao--primario botao--grande">Agendar aula grátis</a>
+          <a href="#planos" class="botao botao--fantasma botao--grande">Ver planos e preços</a>
+        </div>
+
+        <ul class="hero__horarios" data-horarios aria-label="Horário de funcionamento"></ul>
+      </div>
+    </section>
+
+    <!-- ===== CONVÊNIOS ===== -->
+    <section class="convenios" aria-label="Convênios aceitos">
+      <div class="container convenios__inner">
+        <p class="convenios__texto">Aceitamos os principais convênios corporativos de academia:</p>
+        <ul class="convenios__lista" data-convenios></ul>
+      </div>
+    </section>
+
+    <!-- ===== QUEM SOMOS ===== -->
+    <section class="quem-somos secao" aria-labelledby="quem-somos-titulo" data-revelar>
+      <div class="container quem-somos__grid">
+        <div>
+          <span class="secao__eyebrow">Quem somos</span>
+          <h2 id="quem-somos-titulo" class="quem-somos__titulo">
+            Mais que uma academia: um centro de treinamento e família
+          </h2>
+        </div>
+        <div class="quem-somos__texto">
+          <p>
+            Nosso propósito é claro: impulsionar sua evolução física e mental por meio da
+            musculação, das aulas coletivas, e da disciplina e constância.
+          </p>
+          <p>
+            Oferecemos um ambiente moderno, motivador e acessível para o bem-estar de todos,
+            atendendo do iniciante ao atleta de alto desempenho.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PLANOS ===== -->
+    <section id="planos" class="secao secao--alt planos" aria-labelledby="planos-titulo">
+      <div class="container">
+        <div class="secao__cabecalho">
+          <span class="secao__eyebrow">Planos e preços</span>
+          <h2 id="planos-titulo" class="bloco-marcado">
+            <span class="bloco-marcado__linha">Escolha o plano</span><br />
+            <span class="bloco-marcado__linha">que cabe no seu bolso</span>
+          </h2>
+          <p class="secao__intro">
+            Preço fechado, sem letra miúda. Escolha a categoria e o formato de pagamento — o
+            botão já leva direto pro WhatsApp com a mensagem pronta.
+          </p>
+        </div>
+
+        <div class="planos__toggle" role="tablist" aria-label="Categoria de planos">
+          <button type="button" class="planos__tab" role="tab" data-categoria="completo" aria-selected="true">
+            Completo + aulas
+          </button>
+          <button type="button" class="planos__tab" role="tab" data-categoria="musculacao" aria-selected="false" tabindex="-1">
+            Musculação + cardio
+          </button>
+        </div>
+        <p class="planos__descricao" id="planos-descricao"></p>
+
+        <div class="planos__grid" id="planos-grid" role="tabpanel"></div>
+
+        <p class="planos__nota">
+          Valores de taxa de adesão e prazo de fidelidade dos planos recorrentes: a confirmar.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== AULAS COLETIVAS ===== -->
+    <section id="aulas" class="secao aulas" aria-labelledby="aulas-titulo">
+      <div class="container">
+        <div class="secao__cabecalho">
+          <span class="secao__eyebrow">Aulas coletivas</span>
+          <h2 id="aulas-titulo" class="bloco-marcado">
+            <span class="bloco-marcado__linha">Conheça as nossas</span><br />
+            <span class="bloco-marcado__linha">aulas coletivas</span>
+          </h2>
+          <p class="secao__intro">
+            Seis modalidades incluídas no plano completo, ministradas por professores presentes
+            em cada turma.
+          </p>
+        </div>
+
+        <ul class="modalidades-grid" id="modalidades-grid" data-revelar></ul>
+
+        <div class="grade-aulas" data-revelar>
+          <h3 class="grade-aulas__titulo">Grade da semana</h3>
+          <p class="grade-aulas__aviso">
+            Horários de exemplo — a grade real está em confirmação com a academia.
+          </p>
+
+          <div class="grade-aulas__tabela-wrap" role="region" aria-label="Grade de aulas por dia e horário" tabindex="0">
+            <table class="grade-aulas__tabela" id="grade-tabela"></table>
+          </div>
+
+          <div class="grade-aulas__mobile">
+            <div class="grade-aulas__dias" id="grade-dias" role="group" aria-label="Escolher dia da semana"></div>
+            <ul class="grade-aulas__lista" id="grade-lista" aria-live="polite"></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ESTRUTURA ===== -->
+    <section id="estrutura" class="secao secao--alt estrutura" aria-labelledby="estrutura-titulo">
+      <div class="container">
+        <div class="secao__cabecalho">
+          <span class="secao__eyebrow">Estrutura</span>
+          <h2 id="estrutura-titulo" class="bloco-marcado">
+            <span class="bloco-marcado__linha">Equipamento de</span><br />
+            <span class="bloco-marcado__linha">verdade, sem enrolação</span>
+          </h2>
+          <p class="secao__intro">
+            Fotos ilustrativas de estrutura de academia — serão substituídas pelas fotos reais
+            da unidade de Iguaba Grande.
+          </p>
+        </div>
+
+        <ul class="galeria" data-revelar>
+          <li class="galeria__item">
+            <img src="imagens/placeholder/estrutura-cardio.webp" alt="Espaço de cardio com esteiras e aparelhos de musculação" width="1200" height="800" loading="lazy" />
+          </li>
+          <li class="galeria__item">
+            <img src="imagens/placeholder/estrutura-musculacao.webp" alt="Rack de musculação completo com banco e anilhas" width="1200" height="1647" loading="lazy" />
+          </li>
+          <li class="galeria__item">
+            <img src="imagens/placeholder/estrutura-funcional.webp" alt="Área de treino funcional com argolas, medicine balls e cordas" width="1200" height="900" loading="lazy" />
+          </li>
+          <li class="galeria__item">
+            <img src="imagens/placeholder/estrutura-kettlebells.webp" alt="Fileira de kettlebells coloridos organizados no rack" width="1200" height="800" loading="lazy" />
+          </li>
+          <li class="galeria__item">
+            <img src="imagens/placeholder/estrutura-remo.webp" alt="Máquinas de remo e puxada em área de treino funcional" width="1200" height="800" loading="lazy" />
+          </li>
+          <li class="galeria__item">
+            <img src="imagens/placeholder/estrutura-suspensao.webp" alt="Fitas de suspensão (TRX) presas ao rack de musculação" width="1200" height="1800" loading="lazy" />
+          </li>
+          <li class="galeria__item">
+            <img src="imagens/placeholder/estrutura-spinning.webp" alt="Fileira de bicicletas ergométricas para aula de spinning" width="1200" height="1800" loading="lazy" />
+          </li>
+          <li class="galeria__item">
+            <img src="imagens/placeholder/estrutura-barra.webp" alt="Barra olímpica com anilhas e kettlebell no chão emborrachado" width="1200" height="800" loading="lazy" />
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== EQUIPE ===== -->
+    <section id="equipe" class="secao equipe" aria-labelledby="equipe-titulo">
+      <div class="container">
+        <div class="secao__cabecalho">
+          <span class="secao__eyebrow">Equipe</span>
+          <h2 id="equipe-titulo" class="bloco-marcado">
+            <span class="bloco-marcado__linha">Professores que</span><br />
+            <span class="bloco-marcado__linha">acompanham seu treino</span>
+          </h2>
+          <p class="secao__intro">
+            Nomes, formação e CREF de cada professor entram aqui assim que a academia confirmar
+            os dados da equipe atual.
+          </p>
+        </div>
+
+        <ul class="equipe-grid" data-revelar>
+          <li class="card-equipe">
+            <div class="card-equipe__avatar" aria-hidden="true">MU</div>
+            <p class="card-equipe__especialidade">Musculação</p>
+            <p class="card-equipe__nome">Professor(a) a confirmar</p>
+            <p class="card-equipe__cref">CREF a confirmar</p>
+          </li>
+          <li class="card-equipe">
+            <div class="card-equipe__avatar" aria-hidden="true">FU</div>
+            <p class="card-equipe__especialidade">Funcional e Funcional Kids</p>
+            <p class="card-equipe__nome">Professor(a) a confirmar</p>
+            <p class="card-equipe__cref">CREF a confirmar</p>
+          </li>
+          <li class="card-equipe">
+            <div class="card-equipe__avatar" aria-hidden="true">SP</div>
+            <p class="card-equipe__especialidade">Spinning e Jump</p>
+            <p class="card-equipe__nome">Professor(a) a confirmar</p>
+            <p class="card-equipe__cref">CREF a confirmar</p>
+          </li>
+          <li class="card-equipe">
+            <div class="card-equipe__avatar" aria-hidden="true">PI</div>
+            <p class="card-equipe__especialidade">Pilates Solo e Dança Ritmo</p>
+            <p class="card-equipe__nome">Professor(a) a confirmar</p>
+            <p class="card-equipe__cref">CREF a confirmar</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== DEPOIMENTOS ===== -->
+    <section class="secao secao--alt depoimentos" aria-labelledby="depoimentos-titulo">
+      <div class="container">
+        <div class="secao__cabecalho">
+          <span class="secao__eyebrow">Depoimentos</span>
+          <h2 id="depoimentos-titulo" class="bloco-marcado">
+            <span class="bloco-marcado__linha">O que dizem</span><br />
+            <span class="bloco-marcado__linha">sobre a Iron Fox</span>
+          </h2>
+          <p class="secao__intro">
+            Depoimentos de exemplo, para mostrar o formato — serão trocados por avaliações reais
+            de alunos, com autorização de uso de imagem quando houver foto.
+          </p>
+        </div>
+
+        <div class="carrossel" data-revelar>
+          <ul
+            class="depoimentos-grid carrossel__trilho"
+            id="depoimentos-trilho"
+            tabindex="0"
+            role="region"
+            aria-roledescription="carrossel"
+            aria-label="Depoimentos de alunos"
+          >
+            <li class="card-depoimento carrossel__item">
+              <p class="card-depoimento__estrelas"><span aria-hidden="true">★★★★★</span><span class="sr-only">Avaliação 5 de 5 estrelas.</span></p>
+              <p class="card-depoimento__texto">
+                “Comecei sem nenhuma experiência e hoje treino todos os dias antes do trabalho. Os
+                professores corrigem a postura sempre que passam perto.”
+              </p>
+              <div class="card-depoimento__autor">
+                <span class="card-depoimento__avatar" aria-hidden="true">AL</span>
+                <span>Aluna há 8 meses</span>
+              </div>
+            </li>
+            <li class="card-depoimento carrossel__item">
+              <p class="card-depoimento__estrelas"><span aria-hidden="true">★★★★★</span><span class="sr-only">Avaliação 5 de 5 estrelas.</span></p>
+              <p class="card-depoimento__texto">
+                “O que mais gosto é o horário — abre 5h da manhã, então treino e ainda chego cedo no
+                serviço. Ambiente limpo e equipamento sempre em dia.”
+              </p>
+              <div class="card-depoimento__autor">
+                <span class="card-depoimento__avatar" aria-hidden="true">RM</span>
+                <span>Aluno há 1 ano</span>
+              </div>
+            </li>
+            <li class="card-depoimento carrossel__item">
+              <p class="card-depoimento__estrelas"><span aria-hidden="true">★★★★★</span><span class="sr-only">Avaliação 5 de 5 estrelas.</span></p>
+              <p class="card-depoimento__texto">
+                “Entrei pelas aulas de Spinning e acabei virando da musculação também. O clima
+                entre os alunos é muito bom, parece mesmo uma família.”
+              </p>
+              <div class="card-depoimento__autor">
+                <span class="card-depoimento__avatar" aria-hidden="true">JC</span>
+                <span>Aluna há 3 meses</span>
+              </div>
+            </li>
+          </ul>
+
+          <div class="carrossel__controles">
+            <button type="button" class="carrossel__seta" data-carrossel-anterior aria-label="Depoimento anterior">
+              <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6" /></svg>
+            </button>
+            <div class="carrossel__dots" id="depoimentos-dots" role="tablist" aria-label="Selecionar depoimento"></div>
+            <button type="button" class="carrossel__seta" data-carrossel-proximo aria-label="Próximo depoimento">
+              <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6" /></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="antes-depois">
+          <h3 class="antes-depois__titulo">Antes e depois</h3>
+          <div class="antes-depois__placeholder">
+            <svg aria-hidden="true" viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="3" y="5" width="18" height="14" rx="2" />
+              <circle cx="9" cy="11" r="2" />
+              <path d="m21 15-4.5-4.5a2 2 0 0 0-2.8 0L5 19" />
+            </svg>
+            <p>
+              Espaço reservado para fotos reais de antes/depois, com autorização dos alunos.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== AULA EXPERIMENTAL GRÁTIS ===== -->
+    <section id="experimental" class="secao experimental" aria-labelledby="experimental-titulo">
+      <div class="container experimental__grid">
+        <div class="experimental__intro">
+          <span class="secao__eyebrow">Comece hoje</span>
+          <h2 id="experimental-titulo" class="bloco-marcado">
+            <span class="bloco-marcado__linha">Sua primeira aula</span><br />
+            <span class="bloco-marcado__linha">é por nossa conta</span>
+          </h2>
+          <p class="secao__intro">
+            Preencha os dados abaixo e fale direto com a nossa equipe pelo WhatsApp para agendar
+            sua aula experimental gratuita — sem compromisso.
+          </p>
+        </div>
+
+        <form class="formulario" id="form-experimental" novalidate>
+          <div class="formulario__campo">
+            <label for="campo-nome">Nome completo</label>
+            <input type="text" id="campo-nome" name="nome" autocomplete="name" required aria-describedby="campo-nome-erro" />
+            <p class="formulario__erro" id="campo-nome-erro" role="alert"></p>
+          </div>
+
+          <div class="formulario__campo">
+            <label for="campo-telefone">WhatsApp com DDD</label>
+            <input
+              type="tel"
+              id="campo-telefone"
+              name="telefone"
+              inputmode="tel"
+              placeholder="(22) 99999-9999"
+              autocomplete="tel"
+              required
+              aria-describedby="campo-telefone-erro"
+            />
+            <p class="formulario__erro" id="campo-telefone-erro" role="alert"></p>
+          </div>
+
+          <div class="formulario__campo">
+            <label for="campo-objetivo">Seu objetivo</label>
+            <select id="campo-objetivo" name="objetivo" required aria-describedby="campo-objetivo-erro">
+              <option value="">Selecione...</option>
+              <option value="Emagrecimento">Emagrecimento</option>
+              <option value="Ganho de massa muscular">Ganho de massa muscular</option>
+              <option value="Condicionamento físico">Condicionamento físico</option>
+              <option value="Aulas coletivas">Aulas coletivas</option>
+              <option value="Qualidade de vida">Qualidade de vida</option>
+            </select>
+            <p class="formulario__erro" id="campo-objetivo-erro" role="alert"></p>
+          </div>
+
+          <div class="formulario__campo">
+            <label for="campo-dia">Dia preferido para a aula</label>
+            <select id="campo-dia" name="dia" required aria-describedby="campo-dia-erro">
+              <option value="">Selecione...</option>
+              <option value="Segunda-feira">Segunda-feira</option>
+              <option value="Terça-feira">Terça-feira</option>
+              <option value="Quarta-feira">Quarta-feira</option>
+              <option value="Quinta-feira">Quinta-feira</option>
+              <option value="Sexta-feira">Sexta-feira</option>
+              <option value="Sábado">Sábado</option>
+            </select>
+            <p class="formulario__erro" id="campo-dia-erro" role="alert"></p>
+          </div>
+
+          <button type="submit" class="botao botao--primario botao--grande formulario__enviar">
+            Quero minha aula grátis
+          </button>
+          <p class="formulario__status" id="form-status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
+    <!-- ===== ONDE ESTAMOS ===== -->
+    <section id="onde-estamos" class="secao secao--alt onde-estamos" aria-labelledby="onde-estamos-titulo">
+      <div class="container onde-estamos__grid">
+        <div>
+          <span class="secao__eyebrow">Onde estamos</span>
+          <h2 id="onde-estamos-titulo" class="bloco-marcado">
+            <span class="bloco-marcado__linha">Aonde estamos?</span>
+          </h2>
+
+          <address class="onde-estamos__endereco">
+            R. Nossa Sra. de Nazareth, s/n, ao lado do nº 1044<br />
+            Cidade Nova — Iguaba Grande, RJ
+          </address>
+
+          <ul class="onde-estamos__horarios" data-horarios aria-label="Horário de funcionamento"></ul>
+
+          <a
+            class="botao botao--fantasma"
+            href="https://www.google.com/maps/search/?api=1&query=R.+Nossa+Sra.+de+Nazareth+Cidade+Nova+Iguaba+Grande+RJ"
+            target="_blank"
+            rel="noopener"
+          >
+            Traçar rota no Google Maps
+          </a>
+        </div>
+
+        <div class="onde-estamos__mapa">
+          <iframe
+            title="Mapa com a localização da Iron Fox Sport Center em Iguaba Grande"
+            src="https://www.google.com/maps?q=R.+Nossa+Sra.+de+Nazareth,+Cidade+Nova,+Iguaba+Grande+-+RJ&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__marca">
+        <img src="imagens/logo-160.webp" alt="" width="36" height="36" />
+        <span>Iron Fox Sport Center</span>
+      </div>
+      <p class="footer__texto">
+        Site de apresentação — protótipo de conteúdo real, aguardando confirmação de dados antes
+        da publicação final.
+      </p>
+      <p class="footer__copy">© <span id="ano-atual">2026</span> Iron Fox Sport Center. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <a href="#" class="whatsapp-flutuante" id="whatsapp-flutuante" aria-label="Falar no WhatsApp com a Iron Fox">
+    <svg aria-hidden="true" viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+      <path d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.48 1.34 5L2 22l5.2-1.36a9.9 9.9 0 0 0 4.84 1.24h.01c5.5 0 9.96-4.46 9.96-9.96S17.54 2 12.04 2Zm0 18.2h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.09.81.82-3-.2-.31a8.24 8.24 0 1 1 6.97 3.83Zm4.52-6.16c-.25-.12-1.47-.72-1.7-.8-.23-.08-.39-.12-.56.13-.17.25-.64.8-.78.96-.14.17-.29.19-.54.06-.25-.12-1.04-.38-1.98-1.22-.73-.65-1.22-1.46-1.37-1.7-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.42h-.48c-.17 0-.43.06-.66.31-.23.25-.86.84-.86 2.04 0 1.2.88 2.36 1 2.53.12.17 1.73 2.64 4.2 3.7.59.25 1.05.4 1.4.51.59.19 1.13.16 1.55.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.16-.48-.28Z" />
+    </svg>
+  </a>
+
+  <dialog class="galeria-dialog" id="galeria-dialog" aria-label="Foto ampliada da estrutura">
+    <button type="button" class="galeria-dialog__fechar" aria-label="Fechar imagem ampliada">
+      <svg aria-hidden="true" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M6 6l12 12M18 6 6 18" />
+      </svg>
+    </button>
+    <img id="galeria-dialog-img" alt="" />
+    <p id="galeria-dialog-legenda" class="galeria-dialog__legenda"></p>
+  </dialog>
+
+  <!-- Lenis: suaviza a rolagem do site inteiro (roda do mouse/trackpad e
+       teclado — o touch do celular já fica no scroll nativo do sistema).
+       Script clássico carregado antes do módulo para window.Lenis já
+       existir quando js/main.js rodar; se o CDN falhar, o site continua
+       100% navegável no scroll nativo (ver js/modulos/rolagem-suave.js). -->
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js"></script>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

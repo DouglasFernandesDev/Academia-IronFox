@@ -1,0 +1,33 @@
+/* ==========================================================================
+   Bloco marcado — o elemento-assinatura da Iron Fox.
+   Reproduz o device gráfico usado em todos os cartazes oficiais: headline
+   em caixa alta, quebrando linha a linha, cada linha marcada como um bloco
+   sólido vermelho com o texto em branco por cima — como um marca-texto.
+   ========================================================================== */
+
+.bloco-marcado {
+  display: inline;
+  font-size: clamp(2rem, 4.4vw, 3.3rem);
+  line-height: 1.28;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.bloco-marcado__linha {
+  background: var(--cor-vermelho);
+  color: var(--cor-branco);
+  padding: 0.05em 0.28em;
+  display: inline-block;
+  transform: rotate(-0.6deg);
+  box-shadow: var(--sombra-card);
+}
+
+.bloco-marcado__linha:nth-child(even) {
+  transform: rotate(0.5deg);
+}
+
+/* Variante clara: usada sobre fundos já vermelhos (ex.: dentro de um card) */
+.bloco-marcado--claro .bloco-marcado__linha {
+  background: var(--cor-branco);
+  color: var(--cor-vermelho-fundo);
+}

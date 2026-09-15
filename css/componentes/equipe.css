@@ -1,0 +1,64 @@
+/* ==========================================================================
+   Equipe de professores.
+   ========================================================================== */
+
+.equipe-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .equipe-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1080px) {
+  .equipe-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.card-equipe {
+  text-align: center;
+  background: var(--cor-preto-elevado);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  padding: 2rem 1.25rem;
+}
+
+.card-equipe__avatar {
+  width: 64px;
+  height: 64px;
+  margin-inline: auto;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: linear-gradient(150deg, var(--cor-vermelho) 0%, var(--cor-vermelho-fundo) 100%);
+  font-family: var(--fonte-display);
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--cor-branco);
+}
+
+.card-equipe__especialidade {
+  margin-top: 1.1rem;
+  color: var(--cor-vermelho-acento);
+  font-weight: 600;
+  font-size: 0.88rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.card-equipe__nome {
+  margin-top: 0.5rem;
+  font-family: var(--fonte-display);
+  font-size: 1.1rem;
+}
+
+.card-equipe__cref {
+  margin-top: 0.3rem;
+  font-size: 0.8rem;
+  color: var(--cor-texto-suave);
+}

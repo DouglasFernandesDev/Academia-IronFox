@@ -1,0 +1,223 @@
+/* ==========================================================================
+   Iron Fox Sport Center — Tokens + Reset
+   Paleta derivada do logo e dos cartazes oficiais da academia.
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Cor — vermelho de superfície (fundo) e vermelho de acento (texto sobre
+     fundo escuro) são tokens DIFERENTES de propósito, nunca intercambiáveis:
+     um único tom de vermelho não passa 4.5:1 nos dois papéis ao mesmo tempo
+     (texto branco sobre ele E ele como texto sobre preto), então dividir em
+     dois tokens é o que garante contraste acessível nos dois casos. */
+  --cor-vermelho: #c8161d; /* superfície padrão, texto branco em cima — 5.85:1 */
+  --cor-vermelho-hover: #a31217; /* superfície de hover/destaque, texto branco em cima — 7.91:1 */
+  --cor-vermelho-acento: #ff4d55; /* texto/ícone/borda sobre fundo escuro — 5.09–6.04:1 */
+  --cor-vermelho-fundo: #7a0d11;
+  --cor-preto: #0b0b0c;
+  --cor-preto-elevado: #16161a;
+  --cor-preto-elevado-2: #1e1e23;
+  --cor-branco: #ffffff;
+  --cor-texto: #f4f4f5;
+  --cor-texto-suave: #b9b9be;
+  --cor-borda: #2a2a30;
+  --cor-sucesso: #2fae5c;
+  --cor-erro: #ff6b6b;
+
+  /* Tipografia */
+  --fonte-display: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+  --fonte-corpo: 'Barlow', 'Segoe UI', sans-serif;
+
+  /* Espaçamento — escala padrão para landing (16–64px) */
+  --espaco-secao: clamp(3.5rem, 7vw, 6.5rem);
+  --espaco-container: 1.25rem;
+  --largura-container: 1180px;
+
+  /* Efeitos */
+  --raio: 14px;
+  --raio-pequeno: 8px;
+  --sombra-card: 0 20px 45px -20px rgba(0, 0, 0, 0.6);
+  --transicao-rapida: 200ms ease;
+  --transicao-padrao: 280ms cubic-bezier(0.22, 1, 0.36, 1);
+  --transicao-suave: 550ms cubic-bezier(0.16, 1, 0.3, 1); /* ease-out-expo — entrada de painel/menu */
+  --transicao-dinamica: 420ms cubic-bezier(0.34, 1.56, 0.64, 1); /* leve overshoot — ícones e micro-interações */
+
+  color-scheme: dark;
+}
+
+/* ---------- Reset ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* header fixo tem 72px — sem isso, um clique em #planos etc. alinha a
+     seção exatamente no topo da viewport e o header cobre o começo dela */
+  scroll-padding-top: 88px;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--cor-preto);
+  color: var(--cor-texto);
+  font-family: var(--fonte-corpo);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+picture,
+svg {
+  max-width: 100%;
+  display: block;
+}
+
+ul,
+ol {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* ---------- Foco visível — nunca remover ---------- */
+:focus-visible {
+  outline: 2px solid var(--cor-vermelho-acento);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ---------- Tipografia base ---------- */
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--fonte-display);
+  font-weight: 700;
+  line-height: 1.05;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+
+p {
+  margin: 0;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--largura-container);
+  margin-inline: auto;
+  padding-inline: var(--espaco-container);
+}
+
+.secao {
+  padding-block: var(--espaco-secao);
+}
+
+.secao--alt {
+  background: var(--cor-preto-elevado);
+  border-block: 1px solid var(--cor-borda);
+}
+
+.secao__eyebrow {
+  display: block;
+  font-family: var(--fonte-corpo);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cor-vermelho-acento);
+  margin-bottom: 0.75rem;
+}
+
+.secao__intro {
+  max-width: 62ch;
+  color: var(--cor-texto-suave);
+  font-size: 1.05rem;
+  margin-top: 1.1rem;
+}
+
+.secao__cabecalho {
+  margin-bottom: 2.75rem;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 1000;
+  background: var(--cor-vermelho);
+  color: var(--cor-branco);
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--raio-pequeno);
+  font-weight: 700;
+  transition: top var(--transicao-rapida);
+}
+
+.skip-link:focus-visible {
+  top: 1rem;
+}
