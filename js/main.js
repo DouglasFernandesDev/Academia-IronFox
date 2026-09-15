@@ -9,6 +9,8 @@ import { linkWhatsapp } from './modulos/whatsapp.js';
 import { iniciarHeroVideo } from './modulos/hero-video.js';
 import { iniciarRolagemSuave } from './modulos/rolagem-suave.js';
 import { iniciarCarrossel } from './modulos/carrossel.js';
+import { iniciarParallax } from './modulos/parallax.js';
+import { iniciarQuiz } from './modulos/quiz.js';
 
 /**
  * Preenche todo elemento marcado com [data-horarios] a partir de
@@ -60,11 +62,19 @@ iniciarFormulario();
 iniciarGaleria(lenis);
 iniciarRevelacao();
 iniciarHeroVideo();
+iniciarParallax(lenis);
+iniciarQuiz();
 iniciarCarrossel({
   trilhoId: 'depoimentos-trilho',
   dotsId: 'depoimentos-dots',
   botaoAnteriorSeletor: '[data-carrossel-anterior]',
   botaoProximoSeletor: '[data-carrossel-proximo]',
+});
+iniciarCarrossel({
+  trilhoId: 'estrutura-trilho',
+  dotsId: 'estrutura-dots',
+  botaoAnteriorSeletor: '[data-galeria-anterior]',
+  botaoProximoSeletor: '[data-galeria-proximo]',
 });
 
 // Ano corrente no rodapé, sem precisar editar o HTML todo ano

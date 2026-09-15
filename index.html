@@ -30,11 +30,13 @@
   <link rel="stylesheet" href="css/componentes/botao.css" />
   <link rel="stylesheet" href="css/componentes/card-plano.css" />
   <link rel="stylesheet" href="css/componentes/grade-aulas.css" />
+  <link rel="stylesheet" href="css/componentes/carrossel.css" />
   <link rel="stylesheet" href="css/componentes/galeria.css" />
   <link rel="stylesheet" href="css/componentes/equipe.css" />
   <link rel="stylesheet" href="css/componentes/depoimento.css" />
   <link rel="stylesheet" href="css/componentes/formulario.css" />
   <link rel="stylesheet" href="css/componentes/whatsapp-flutuante.css" />
+  <link rel="stylesheet" href="css/componentes/quiz.css" />
   <link rel="stylesheet" href="css/utilitarios.css" />
 
   <!-- JSON-LD: dados estruturados para a academia aparecer na busca local do Google.
@@ -124,31 +126,31 @@
       </div>
 
       <div class="container hero__conteudo">
-        <p class="secao__eyebrow">Iguaba Grande · Cidade Nova</p>
         <h1 id="hero-titulo" class="hero__titulo">
           <span class="bloco-marcado">
-            <span class="bloco-marcado__linha">Chegamos para mudar</span><br />
-            <span class="bloco-marcado__linha">a sua visão de treino!</span>
+            <span class="bloco-marcado__linha">Na <span class="bloco-marcado__destaque">Iron Fox</span>, sua melhor versão não pede licença -</span><br />
+            <span class="bloco-marcado__linha">Ela ataca!</span>
           </span>
         </h1>
-        <p class="hero__texto">
-          Musculação, cardio e 6 modalidades de aula coletiva num centro de treinamento pensado
-          do iniciante ao atleta de alto desempenho. Aberto todos os dias, a partir das 5h.
-        </p>
+        <p class="hero__texto">Musculação, cardio e aulas coletivas. Aberto todos os dias, a partir das 5h.</p>
         <div class="hero__ctas">
           <a href="#experimental" class="botao botao--primario botao--grande">Agendar aula grátis</a>
           <a href="#planos" class="botao botao--fantasma botao--grande">Ver planos e preços</a>
         </div>
-
-        <ul class="hero__horarios" data-horarios aria-label="Horário de funcionamento"></ul>
       </div>
     </section>
 
-    <!-- ===== CONVÊNIOS ===== -->
-    <section class="convenios" aria-label="Convênios aceitos">
-      <div class="container convenios__inner">
-        <p class="convenios__texto">Aceitamos os principais convênios corporativos de academia:</p>
-        <ul class="convenios__lista" data-convenios></ul>
+    <!-- ===== FAIXA DE INFORMAÇÃO (horário + convênios) =====
+         O horário completo e os convênios saíram de cima do vídeo do hero
+         (ficava pesado por cima da imagem) e vieram pra cá, uma faixa clara
+         logo abaixo — mesma informação, lugar mais fácil de ler. -->
+    <section class="info-rapida" aria-label="Horário de funcionamento e convênios aceitos">
+      <div class="container info-rapida__inner">
+        <ul class="info-rapida__horarios" data-horarios aria-label="Horário de funcionamento"></ul>
+        <div class="info-rapida__convenios">
+          <p class="convenios__texto">Aceitamos:</p>
+          <ul class="convenios__lista" data-convenios></ul>
+        </div>
       </div>
     </section>
 
@@ -171,6 +173,21 @@
             atendendo do iniciante ao atleta de alto desempenho.
           </p>
         </div>
+      </div>
+    </section>
+
+    <!-- ===== QUIZ DE RECOMENDAÇÃO DE PLANO ===== -->
+    <section id="quiz" class="secao quiz" aria-labelledby="quiz-titulo" data-revelar>
+      <div class="container quiz__container">
+        <div class="secao__cabecalho quiz__cabecalho">
+          <span class="secao__eyebrow">Não sabe qual plano escolher?</span>
+          <h2 id="quiz-titulo" class="bloco-marcado">
+            <span class="bloco-marcado__linha">Responda 3 perguntas</span><br />
+            <span class="bloco-marcado__linha">e a gente te diz</span>
+          </h2>
+        </div>
+
+        <div class="quiz__card" id="quiz-card" aria-live="polite"></div>
       </div>
     </section>
 
@@ -253,36 +270,56 @@
           </h2>
           <p class="secao__intro">
             Fotos ilustrativas de estrutura de academia — serão substituídas pelas fotos reais
-            da unidade de Iguaba Grande.
+            da unidade de Iguaba Grande. Arraste para o lado no celular.
           </p>
         </div>
 
-        <ul class="galeria" data-revelar>
-          <li class="galeria__item">
-            <img src="imagens/placeholder/estrutura-cardio.webp" alt="Espaço de cardio com esteiras e aparelhos de musculação" width="1200" height="800" loading="lazy" />
-          </li>
-          <li class="galeria__item">
-            <img src="imagens/placeholder/estrutura-musculacao.webp" alt="Rack de musculação completo com banco e anilhas" width="1200" height="1647" loading="lazy" />
-          </li>
-          <li class="galeria__item">
-            <img src="imagens/placeholder/estrutura-funcional.webp" alt="Área de treino funcional com argolas, medicine balls e cordas" width="1200" height="900" loading="lazy" />
-          </li>
-          <li class="galeria__item">
-            <img src="imagens/placeholder/estrutura-kettlebells.webp" alt="Fileira de kettlebells coloridos organizados no rack" width="1200" height="800" loading="lazy" />
-          </li>
-          <li class="galeria__item">
-            <img src="imagens/placeholder/estrutura-remo.webp" alt="Máquinas de remo e puxada em área de treino funcional" width="1200" height="800" loading="lazy" />
-          </li>
-          <li class="galeria__item">
-            <img src="imagens/placeholder/estrutura-suspensao.webp" alt="Fitas de suspensão (TRX) presas ao rack de musculação" width="1200" height="1800" loading="lazy" />
-          </li>
-          <li class="galeria__item">
-            <img src="imagens/placeholder/estrutura-spinning.webp" alt="Fileira de bicicletas ergométricas para aula de spinning" width="1200" height="1800" loading="lazy" />
-          </li>
-          <li class="galeria__item">
-            <img src="imagens/placeholder/estrutura-barra.webp" alt="Barra olímpica com anilhas e kettlebell no chão emborrachado" width="1200" height="800" loading="lazy" />
-          </li>
-        </ul>
+        <div class="carrossel" data-revelar>
+          <ul class="galeria carrossel__trilho" id="estrutura-trilho">
+            <li class="galeria__item carrossel__item">
+              <img src="imagens/placeholder/estrutura-cardio.webp" alt="Espaço de cardio com esteiras e aparelhos de musculação" width="1200" height="800" loading="lazy" />
+              <span class="galeria__legenda">Cardio</span>
+            </li>
+            <li class="galeria__item carrossel__item">
+              <img src="imagens/placeholder/estrutura-musculacao.webp" alt="Rack de musculação completo com banco e anilhas" width="1200" height="1647" loading="lazy" />
+              <span class="galeria__legenda">Musculação</span>
+            </li>
+            <li class="galeria__item carrossel__item">
+              <img src="imagens/placeholder/estrutura-funcional.webp" alt="Área de treino funcional com argolas, medicine balls e cordas" width="1200" height="900" loading="lazy" />
+              <span class="galeria__legenda">Funcional</span>
+            </li>
+            <li class="galeria__item carrossel__item">
+              <img src="imagens/placeholder/estrutura-kettlebells.webp" alt="Fileira de kettlebells coloridos organizados no rack" width="1200" height="800" loading="lazy" />
+              <span class="galeria__legenda">Musculação</span>
+            </li>
+            <li class="galeria__item carrossel__item">
+              <img src="imagens/placeholder/estrutura-remo.webp" alt="Máquinas de remo e puxada em área de treino funcional" width="1200" height="800" loading="lazy" />
+              <span class="galeria__legenda">Funcional</span>
+            </li>
+            <li class="galeria__item carrossel__item">
+              <img src="imagens/placeholder/estrutura-suspensao.webp" alt="Fitas de suspensão (TRX) presas ao rack de musculação" width="1200" height="1800" loading="lazy" />
+              <span class="galeria__legenda">Funcional</span>
+            </li>
+            <li class="galeria__item carrossel__item">
+              <img src="imagens/placeholder/estrutura-spinning.webp" alt="Fileira de bicicletas ergométricas para aula de spinning" width="1200" height="1800" loading="lazy" />
+              <span class="galeria__legenda">Spinning</span>
+            </li>
+            <li class="galeria__item carrossel__item">
+              <img src="imagens/placeholder/estrutura-barra.webp" alt="Barra olímpica com anilhas e kettlebell no chão emborrachado" width="1200" height="800" loading="lazy" />
+              <span class="galeria__legenda">Musculação</span>
+            </li>
+          </ul>
+
+          <div class="carrossel__controles carrossel__controles--galeria">
+            <button type="button" class="carrossel__seta" data-galeria-anterior aria-label="Foto anterior">
+              <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6" /></svg>
+            </button>
+            <div class="carrossel__dots" id="estrutura-dots" role="tablist" aria-label="Selecionar foto"></div>
+            <button type="button" class="carrossel__seta" data-galeria-proximo aria-label="Próxima foto">
+              <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6" /></svg>
+            </button>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -337,7 +374,7 @@
           <span class="secao__eyebrow">Depoimentos</span>
           <h2 id="depoimentos-titulo" class="bloco-marcado">
             <span class="bloco-marcado__linha">O que dizem</span><br />
-            <span class="bloco-marcado__linha">sobre a Iron Fox</span>
+            <span class="bloco-marcado__linha">sobre a <span class="bloco-marcado__destaque">Iron Fox</span></span>
           </h2>
           <p class="secao__intro">
             Depoimentos de exemplo, para mostrar o formato — serão trocados por avaliações reais

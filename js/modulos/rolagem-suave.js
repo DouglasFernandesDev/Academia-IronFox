@@ -14,8 +14,16 @@ export function iniciarRolagemSuave() {
   if (typeof window.Lenis !== 'function') return null;
 
   const lenis = new window.Lenis({
-    duration: 1.1,
-    easing: (t) => 1 - Math.pow(1 - t, 3),
+    // lerp em vez de duration/easing fixos: em vez de cada evento de scroll
+    // disparar uma animação com tempo marcado, a posição real "persegue"
+    // o alvo continuamente a cada frame — é o que dá aquela sensação de
+    // rolagem "líquida" o tempo todo, em vez de suave só nos saltos de
+    // âncora. 0.1 é o valor mais usado em produção: suaviza sem parecer
+    // borrachudo nem atrasar a resposta ao gesto.
+    lerp: 0.1,
+    // Só as chamadas .scrollTo() (âncoras) usam duration/easing — aqui uma
+    // curva expo-out: sai rápido e desacelera suave até o alvo.
+    easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
   });
 
   // Exposto para depuração via devtools (`window.__lenis`) — não é usado

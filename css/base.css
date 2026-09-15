@@ -138,17 +138,31 @@ table {
   border-radius: 4px;
 }
 
-/* ---------- Tipografia base ---------- */
+/* ---------- Tipografia base ----------
+   Caixa alta só em h1/h2 — são a "gritaria" intencional (o bloco marcado,
+   os títulos de seção), que é a marca registrada dos cartazes originais.
+   h3/h4 (nome de plano, de modalidade, de professor) ficam em caixa normal
+   e com peso mais leve: cria hierarquia de verdade — a página tem um tom
+   de voz que sobe e desce, não grita o texto inteiro do início ao fim. */
 h1,
 h2,
 h3,
 h4 {
   font-family: var(--fonte-display);
-  font-weight: 700;
   line-height: 1.05;
   margin: 0;
-  text-transform: uppercase;
   letter-spacing: -0.01em;
+}
+
+h1,
+h2 {
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+h3,
+h4 {
+  font-weight: 600;
 }
 
 p {

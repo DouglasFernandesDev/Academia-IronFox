@@ -1,9 +1,9 @@
 /* ==========================================================================
-   Depoimentos em carrossel (scroll-snap horizontal, com setas e dots) +
-   placeholder de antes/depois.
+   Depoimentos (usa a mecânica de carrossel de css/componentes/carrossel.css)
+   + placeholder de antes/depois.
    ========================================================================== */
 
-.carrossel {
+.depoimentos .carrossel {
   /* largura menor que a seção de propósito: com só 3 depoimentos, se a
      trilha coubesse toda na tela (acontece a partir de ~1100px) os cards
      parariam de rolar e os controles virariam decoração. Travando a
@@ -12,37 +12,6 @@
   max-width: 760px;
   margin-inline: auto;
   margin-bottom: 3rem;
-  /* Mesmo com a trilha clipando o próprio conteúdo (overflow-x: auto logo
-     abaixo), os itens fora da faixa visível ainda inflam o scrollWidth do
-     <html> em alguns navegadores. "clip" aqui — bem local, só neste
-     componente — resolve sem repetir o erro de colocar overflow-x em
-     html/body ao mesmo tempo, que quebra o position: sticky dos cards de
-     plano em outra seção (dois contextos de rolagem concorrentes). */
-  overflow-x: clip;
-}
-
-.depoimentos-grid.carrossel__trilho {
-  display: flex;
-  gap: 1.25rem;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  padding-block: 0.35rem;
-  /* esconde a barra de rolagem nativa sem tirar a rolagem funcional —
-     o carrossel já tem suas próprias setas e dots como controle visível */
-  scrollbar-width: none;
-}
-
-.depoimentos-grid.carrossel__trilho::-webkit-scrollbar {
-  display: none;
-}
-
-.carrossel__item {
-  flex: 0 0 min(84vw, 360px);
-  /* start, não center: o card "atual" fica encostado no início da trilha
-     (com o próximo espiando na borda), igual ao carrossel de referência —
-     alinhar pelo centro confundia qual item contar como "ativo" sempre
-     que mais de um card cabia na tela ao mesmo tempo */
-  scroll-snap-align: start;
 }
 
 .card-depoimento {

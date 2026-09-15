@@ -255,8 +255,14 @@ body.menu-aberto {
 
 .hero__media {
   position: absolute;
-  inset: 0;
+  /* Folga de 14% no topo/base: o parallax (js/modulos/parallax.js) translada
+     essa camada ao rolar, e sem essa sobra a borda da imagem apareceria
+     vazia no meio do movimento. O .hero tem overflow:hidden, então o
+     excesso nunca vaza pra fora do hero. */
+  inset: -14% 0;
+  height: 128%;
   z-index: -1;
+  will-change: transform;
 }
 
 .hero__img {
@@ -316,16 +322,7 @@ body.menu-aberto {
   margin-top: 2.25rem;
 }
 
-.hero__horarios {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem 1.75rem;
-  margin-top: 2.75rem;
-  padding-top: 1.75rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.14);
-}
-
-/* ---------- Horário (item reutilizado no hero e em onde-estamos) ---------- */
+/* ---------- Horário (item reutilizado na faixa rápida e em onde-estamos) ---------- */
 .horario {
   display: flex;
   flex-direction: column;
@@ -345,20 +342,59 @@ body.menu-aberto {
   font-size: 1.15rem;
 }
 
-/* ---------- Convênios ---------- */
-.convenios {
+/* ---------- Faixa de informação rápida (horário + convênios) ----------
+   Fundo claro logo abaixo do hero: junta duas informações que antes
+   ficavam empilhadas em cima do vídeo (pesava a leitura ali) num lugar
+   plano, fácil de escanear. O .horario__intervalo herda a cor escura
+   daqui sozinho (não define cor própria) — mas o .horario__dias TEM cor
+   própria (--cor-texto-suave, um cinza claro pensado pra fundo escuro),
+   que em cima de branco cai pra 1.95:1 de contraste — por isso o override
+   logo abaixo, com o mesmo cinza escuro já usado em .convenios__texto
+   (9.53:1, testado). */
+.info-rapida {
   background: var(--cor-branco);
   color: var(--cor-preto);
   padding-block: 1.5rem;
 }
 
-.convenios__inner {
+.info-rapida .horario__dias {
+  color: #45454a;
+}
+
+.info-rapida__inner {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
-  gap: 0.75rem 1.5rem;
-  text-align: center;
+  justify-content: space-between;
+  gap: 1.25rem 2.5rem;
+}
+
+.info-rapida__horarios {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.75rem;
+}
+
+.info-rapida__convenios {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1rem;
+}
+
+@media (max-width: 640px) {
+  .info-rapida__inner {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .info-rapida__horarios {
+    justify-content: center;
+  }
+
+  .info-rapida__convenios {
+    justify-content: center;
+  }
 }
 
 .convenios__texto {

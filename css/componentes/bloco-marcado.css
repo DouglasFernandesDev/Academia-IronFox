@@ -31,3 +31,14 @@
   background: var(--cor-branco);
   color: var(--cor-vermelho-fundo);
 }
+
+/* Destaque dentro da linha: inverte as cores só numa palavra (ex.: "Iron
+   Fox"), o mesmo tratamento vermelho-sobre-branco da logo — em vez de
+   texto vermelho em cima do bloco vermelho da linha, que ficaria
+   invisível por serem a mesma cor. */
+.bloco-marcado__destaque {
+  background: var(--cor-branco);
+  color: var(--cor-vermelho);
+  padding: 0 0.18em;
+  border-radius: 2px;
+}

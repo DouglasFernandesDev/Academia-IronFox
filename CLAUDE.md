@@ -35,16 +35,21 @@ já abre o WhatsApp com uma mensagem pronta.
   - `index.html` — página única de apresentação (one-pager)
   - `css/` — `css/base.css` (tokens + reset), `css/layout.css` (header, hero, footer, seções),
     `css/componentes/` (um arquivo por componente: `bloco-marcado.css`, `botao.css`,
-    `card-plano.css`, `grade-aulas.css`, `galeria.css`, `equipe.css`, `depoimento.css`,
-    `formulario.css`, `whatsapp-flutuante.css`), `css/utilitarios.css` (revelação por scroll)
+    `card-plano.css`, `grade-aulas.css`, `carrossel.css` (mecânica genérica de scroll-snap,
+    usada por depoimentos e pela galeria no mobile), `galeria.css`, `equipe.css`,
+    `depoimento.css`, `formulario.css`, `whatsapp-flutuante.css`, `quiz.css`),
+    `css/utilitarios.css` (revelação por scroll)
   - `js/main.js` — ponto de entrada (`<script type="module">`), orquestra os módulos
   - `js/data/` — **toda informação do negócio fica aqui**, nunca hardcoded em outro lugar:
     - `config.js` — WhatsApp, endereço, coordenadas, horários, convênios, manifesto
-    - `planos.js` — as duas categorias de plano com os preços reais
+    - `planos.js` — as duas categorias de plano com os preços reais (também usado pelo quiz)
     - `aulas.js` — modalidades e grade de horários
     - `equipe.js` / `depoimentos.js` — conteúdo ainda placeholder, ver seção abaixo
-  - `js/modulos/` — um módulo por comportamento (`whatsapp.js`, `planos.js`,
-    `grade-aulas.js`, `navegacao.js`, `formulario.js`, `galeria.js`, `revelar.js`)
+  - `js/modulos/` — um módulo por comportamento: `whatsapp.js`, `planos.js`, `grade-aulas.js`,
+    `navegacao.js`, `formulario.js`, `galeria.js`, `revelar.js`, `hero-video.js` (autoplay com
+    fallback pra foto real), `rolagem-suave.js` (Lenis), `carrossel.js` (genérico — inicializado
+    duas vezes: depoimentos e galeria mobile), `parallax.js` (hero), `quiz.js` (recomendação de
+    plano a partir dos dados reais de `planos.js`)
   - `imagens/` — cartazes originais do Instagram (fonte dos dados reais) + `imagens/placeholder/`
     (fotos de banco de imagens usadas só até haver fotos reais, ver README daquela pasta)
 - JavaScript em módulos ES6 (`import`/`export`) — evita poluir o escopo global

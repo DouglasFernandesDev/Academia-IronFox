@@ -1,0 +1,100 @@
+/* ==========================================================================
+   Carrossel genérico (scroll-snap horizontal + setas + dots) — mecânica
+   compartilhada por depoimentos e, no mobile, pela galeria de estrutura.
+   Cada instância define só o tamanho do próprio item (ex.: .carrossel__item
+   dentro de #depoimentos-trilho vs dentro de #estrutura-trilho).
+   ========================================================================== */
+
+.carrossel {
+  margin-bottom: 2rem;
+  /* Mesmo com a trilha clipando o próprio conteúdo (overflow-x: auto logo
+     abaixo), itens fora da faixa visível ainda inflam o scrollWidth do
+     <html> em alguns navegadores. "clip" aqui — bem local, só neste
+     componente — resolve sem repetir o erro de colocar overflow-x em
+     html/body ao mesmo tempo, que quebra o position: sticky dos cards de
+     plano em outra seção (dois contextos de rolagem concorrentes). */
+  overflow-x: clip;
+}
+
+.carrossel__trilho {
+  display: flex;
+  gap: 1.25rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-block: 0.35rem;
+  /* esconde a barra de rolagem nativa sem tirar a rolagem funcional — o
+     carrossel já tem suas próprias setas e dots como controle visível */
+  scrollbar-width: none;
+}
+
+.carrossel__trilho::-webkit-scrollbar {
+  display: none;
+}
+
+.carrossel__item {
+  flex: 0 0 min(84vw, 360px);
+  /* start, não center: o item "atual" fica encostado no início da trilha
+     (com o próximo espiando na borda) — alinhar pelo centro confundia
+     qual item contar como "ativo" sempre que mais de um cabia na tela. */
+  scroll-snap-align: start;
+}
+
+/* ---------- Controles do carrossel ---------- */
+.carrossel__controles {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  margin-top: 1.75rem;
+}
+
+.carrossel__seta {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--cor-preto-elevado-2);
+  border: 1px solid var(--cor-borda);
+  color: var(--cor-texto);
+  transition: border-color var(--transicao-rapida), color var(--transicao-rapida), transform var(--transicao-rapida);
+}
+
+.carrossel__seta:hover {
+  border-color: var(--cor-vermelho-acento);
+  color: var(--cor-vermelho-acento);
+}
+
+.carrossel__seta:active {
+  transform: scale(0.92);
+}
+
+.carrossel__seta:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.carrossel__seta:disabled:hover {
+  border-color: var(--cor-borda);
+  color: var(--cor-texto);
+}
+
+.carrossel__dots {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.carrossel__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--cor-borda);
+  transition: background var(--transicao-rapida), width var(--transicao-rapida);
+}
+
+.carrossel__dot[aria-selected='true'] {
+  background: var(--cor-vermelho-acento);
+  width: 22px;
+}
