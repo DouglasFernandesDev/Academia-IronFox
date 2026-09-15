@@ -98,7 +98,12 @@ export function iniciarQuiz() {
       renderizarPergunta();
     });
 
-    card.querySelector('.quiz__pergunta')?.focus();
+    // preventScroll é essencial aqui: iniciarQuiz() já chama
+    // renderizarPergunta() uma vez ao carregar a página inteira (não só ao
+    // avançar de passo) — sem isso, focar um elemento fora da tela faz o
+    // navegador rolar a página até ele, e todo visitante abriria o site
+    // já no meio do quiz em vez de no topo.
+    card.querySelector('.quiz__pergunta')?.focus({ preventScroll: true });
   }
 
   function renderizarResultado() {
@@ -127,7 +132,7 @@ export function iniciarQuiz() {
       renderizarPergunta();
     });
 
-    card.querySelector('.quiz__resultado-eyebrow')?.focus();
+    card.querySelector('.quiz__resultado-eyebrow')?.focus({ preventScroll: true });
   }
 
   renderizarPergunta();

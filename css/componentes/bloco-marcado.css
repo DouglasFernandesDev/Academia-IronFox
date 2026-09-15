@@ -37,6 +37,7 @@
 .bloco-marcado__destaque {
   color: var(--cor-vermelho-acento);
   padding: 0 0.18em;
+  box-shadow: var(--sombra-card);
 }
 
 /* --cor-vermelho-acento só passa no contraste sobre fundo ESCURO (ver
