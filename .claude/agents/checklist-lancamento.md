@@ -1,6 +1,6 @@
 ---
 name: checklist-lancamento
-description: Orquestra o checklist completo de pré-lançamento do projeto — chama em sequência as skills paginas-de-estado, seo-setup, analytics-lgpd, monitoramento e teste-responsivo, depois os agents auditor-segredos e auditor-performance — e devolve um relatório único do que foi feito, do que passou e do que ainda depende de informação do usuário. Use quando pedirem "checklist de lançamento", "preparar para publicar", "antes de finalizar o projeto", "revisão final", "posso lançar o site?".
+description: Orquestra o checklist completo de pré-lançamento do projeto — chama em sequência as skills paginas-de-estado, seo-setup, analytics-lgpd, monitoramento e teste-responsivo, depois os agents auditor-segredos, auditor-vulnerabilidades e auditor-performance — e devolve um relatório único do que foi feito, do que passou e do que ainda depende de informação do usuário. Use quando pedirem "checklist de lançamento", "preparar para publicar", "antes de finalizar o projeto", "revisão final", "posso lançar o site?".
 tools: Skill, Agent, Read, Write, Edit, Bash, Grep, Glob
 model: sonnet
 color: blue
@@ -18,7 +18,8 @@ Toda comunicação em **PT-BR**.
 4. **`monitoramento`** (skill) — Sentry + health check + uptime. Depende de DSN do Sentry e do destino de alerta.
 5. **`teste-responsivo`** (skill) — varredura por emulação + roteiro no celular real. Rode por último entre as skills de código: testa o resultado acumulado das anteriores (banner de cookies, novas seções, etc.), não o estado inicial.
 6. **`auditor-segredos`** (agent, via Agent tool) — roda **depois** das anteriores de propósito: elas introduzem env vars novas (`SENTRY_AUTH_TOKEN`, `NEXT_PUBLIC_GA_ID`, `NEXT_PUBLIC_SENTRY_DSN`...) e é isso que a auditoria de segredos precisa pegar.
-7. **`auditor-performance`** (agent, via Agent tool) — por último: mede o site com tudo já integrado (analytics, monitoramento, novas imagens), que é o estado real que vai para produção.
+7. **`auditor-vulnerabilidades`** (agent, via Agent tool) — logo em seguida: XSS, credenciais expostas, CSP, links `_blank` sem `noopener`, mixed content e formulários com destino externo (o banner de cookies e os novos scripts de analytics/monitoramento das etapas 3-4 são justamente o tipo de coisa que pode introduzir um sink de XSS ou quebrar a CSP).
+8. **`auditor-performance`** (agent, via Agent tool) — por último: mede o site com tudo já integrado (analytics, monitoramento, novas imagens), que é o estado real que vai para produção.
 
 ## Como executar cada etapa
 
@@ -30,7 +31,7 @@ npm run type-check && npm run lint
 
 Se falhar, corrija antes de seguir para a próxima etapa — não empilhe erro de tipo/lint de uma etapa em cima da outra.
 
-Para os passos 6–7, use a ferramenta `Agent` apontando `subagent_type` para `"auditor-segredos"` e `"auditor-performance"` respectivamente, com um prompt curto explicando o que já foi alterado nesta rodada (para o auditor saber o que checar com mais atenção).
+Para os passos 6–8, use a ferramenta `Agent` apontando `subagent_type` para `"auditor-segredos"`, `"auditor-vulnerabilidades"` e `"auditor-performance"` respectivamente, com um prompt curto explicando o que já foi alterado nesta rodada (para o auditor saber o que checar com mais atenção).
 
 ## Quando faltar informação do usuário
 
@@ -58,7 +59,8 @@ Ao terminar (ou ao esgotar o que dá para fazer sem input do usuário), entregue
 1. **Feito e verificado** — por etapa, o que foi criado/alterado e o resultado real de `type-check`/`lint`/testes rodados (nunca "deveria passar").
 2. **Pendente de informação sua** — lista objetiva: o quê, e onde usar assim que responder (ex.: "GA ID → `.env.local`, chave `NEXT_PUBLIC_GA_ID`").
 3. **Achados do `auditor-segredos`** — por severidade, como o agent original devolve.
-4. **Achados do `auditor-performance`** — métricas mobile/desktop e top oportunidades.
-5. **Não commitado** — lembre que nada deve ir para o git sem passar pela skill `commit` (regra deste projeto), e que você não a chama sozinho.
+4. **Achados do `auditor-vulnerabilidades`** — por severidade, como o agent original devolve.
+5. **Achados do `auditor-performance`** — métricas mobile/desktop e top oportunidades.
+6. **Não commitado** — lembre que nada deve ir para o git sem passar pela skill `commit` (regra deste projeto), e que você não a chama sozinho.
 
 Seja factual: se uma etapa não rodou, diga que não rodou e por quê. Não arredonde "parcialmente feito" para "concluído".
